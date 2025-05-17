@@ -1,5 +1,8 @@
 import React from 'react';
 import BlogPostList from './BlogPostList';
+// import styles from './BlogPostItem.css'
+import style from './BlogPostItem';
+import './App.css';
 
 const samplePosts = [
   {
@@ -26,8 +29,8 @@ const samplePosts = [
 ];
 
 const App = () => (
-  <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px' }}>
-    <h1 style={{ textAlign: 'center' }}>Blog Posts</h1>
+  <div className="app-container">
+    <h1>Blog Posts</h1>
     <BlogPostList posts={samplePosts} />
   </div>
 );

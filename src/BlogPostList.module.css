@@ -1,8 +1,25 @@
+.blogPostListWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
 .blogPostList {
-  display: grid;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  padding: 10px;
+}
+
+.blogPostItem {
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .noPosts {

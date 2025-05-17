@@ -1,14 +1,18 @@
 .blogPostItem {
-  background-color: #fff;
+  width: 100%;               /* Makes items fill the container */
+  background-color: #ffffff;
   border: 1px solid #dddddd;
   padding: 20px;
   box-sizing: border-box;
   transition: box-shadow 0.2s;
+  border-radius: 4px;
 }
+
 
 .blogPostItem:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 
 .title {
   text-decoration: none;
@@ -29,4 +33,7 @@
   font-size: 14px;
   color: #999999;
   margin-top: 10px;
+}
+.Item{
+  justify-content: center;
 }
