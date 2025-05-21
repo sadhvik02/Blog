@@ -25,5 +25,4 @@ const BlogPostList = ({ posts }) => {
   );
 };
 
-export default BlogPostList; 
-// For exporting?\
+export default BlogPostList;
