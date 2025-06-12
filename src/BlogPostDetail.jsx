@@ -6,12 +6,19 @@ const BlogPostDetail = ({ title, content, author, date }) => {
     return <p className={styles.notFound}>Blog post not found.</p>;
   }
 
-  const formattedDate = new Date(date).toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    day: 'num̀̀̀̀eric',
-    year: 'numeric',
-  });
+  let formattedDate = 'Invalid date';
+  try {
+    const d = new Date(date);
+    if (!isNaN(d)) {
+      formattedDate = d.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      });
+    }
+  } catch (error) {
+    console.error('Invalid date format:', error);
+  }
 
   return (
     <div className={styles.blogPostDetail}>
