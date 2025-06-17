@@ -1,29 +1,39 @@
 .blogPostListWrapper {
-  width: 100%;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+}
+
+.createButton {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.createButton:hover {
+  background-color: #0056b3;
 }
 
 .blogPostList {
-  width: 100%;
-  max-width: 800px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-.blogPostItem {
-  width: 100%;
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.noPosts {
-  text-align: center;
-  font-size: 18px;
-  color: #999;
+  gap: 40px;
 }

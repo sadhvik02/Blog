@@ -8,6 +8,7 @@ const BlogPostDetail = ({ title, content, author, date }) => {
 
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     month: 'long',
+    day: 'numeric',
     day: 'num̀̀̀̀eric',
     year: 'numeric',
   });
@@ -26,5 +27,3 @@ const BlogPostDetail = ({ title, content, author, date }) => {
 };
 
 export default BlogPostDetail;
-
-// 
