@@ -3,6 +3,7 @@ import { Routes, Route, useParams, useNavigate, Navigate, Link } from 'react-rou
 import BlogPostList from './BlogPostList';
 import BlogPostDetail from './BlogPostDetail';
 import BlogPostForm from './BlogPostForm';
+import Layout from './Components/Layout';
 
 const App = () => {
   const [blogPosts, setBlogPosts] = useState([
@@ -44,70 +45,71 @@ const App = () => {
   };
 
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/Blog" replace />} />
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Navigate to="/posts" replace />} />
 
-      <Route
-        path="/Blog"
-        element={
-          <div>
-            <h1 style={{ paddingLeft: '1rem' }}>Blog Posts</h1>
-            <Link to="/Blog/create" style={{ marginLeft: '1rem', color: 'blue' }}>
-              + New Post
-            </Link>
-            <BlogPostList
-              posts={blogPosts.map((post) => ({
-                ...post,
-                url: `/posts/${post.id}`,
-              }))}
+        <Route
+          path="/posts"
+          element={
+            <div>
+              <h1 style={{ paddingLeft: '1rem' }}>Blog Posts</h1>
+              <Link to="/posts/create" style={{ marginLeft: '1rem', color: 'blue' }}>
+                + New Post
+              </Link>
+              <BlogPostList
+                posts={blogPosts.map((post) => ({
+                  ...post,
+                  url: `/posts/${post.id}`,
+                }))}
+              />
+            </div>
+          }
+        />
+
+        <Route
+          path="/posts/create"
+          element={
+            <BlogPostForm
+              onSubmit={(postData) => {
+                handleCreatePost(postData);
+                return Promise.resolve();
+              }}
             />
-          </div>
-        }
-      />
+          }
+        />
 
-      <Route
-        path="/Blog/create"
-        element={
-          <BlogPostForm
-            onSubmit={(postData) => {
-              handleCreatePost(postData);
-              return Promise.resolve();
-            }}
-          />
-        }
-      />
+        <Route
+          path="/posts/:id"
+          element={
+            <PostDetailWrapper
+              posts={blogPosts}
+              onDelete={handleDeletePost}
+            />
+          }
+        />
 
-      <Route
-        path="/posts/:id"
-        element={
-          <PostDetailWrapper
-            posts={blogPosts}
-            onDelete={handleDeletePost}
-          />
-        }
-      />
+        <Route
+          path="/posts/:id/edit"
+          element={<EditPostWrapper posts={blogPosts} onUpdate={handleUpdatePost} />}
+        />
 
-      <Route
-        path="/posts/:id/edit"
-        element={<EditPostWrapper posts={blogPosts} onUpdate={handleUpdatePost} />}
-      />
-
-      <Route path="*" element={<p>404 – Page Not Found</p>} />
-    </Routes>
+        <Route path="*" element={<p style={{ padding: '1rem' }}>404 – Page Not Found</p>} />
+      </Routes>
+    </Layout>
   );
 };
 
-// Detail page wrapper with delete button
 const PostDetailWrapper = ({ posts, onDelete }) => {
   const { id } = useParams();
   const post = posts.find((p) => p.id === id);
   const navigate = useNavigate();
 
-  if (!post) return <p>Blog post not found.</p>;
+  if (!post) return <p style={{ padding: '1rem' }}>Blog post not found.</p>;
 
   const handleDelete = () => {
     onDelete(id);
-    navigate('/Blog');
+    navigate('/posts');
   };
 
   return (
@@ -123,13 +125,12 @@ const PostDetailWrapper = ({ posts, onDelete }) => {
   );
 };
 
-// Edit form wrapper
 const EditPostWrapper = ({ posts, onUpdate }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const post = posts.find((p) => p.id === id);
 
-  if (!post) return <p>Post not found.</p>;
+  if (!post) return <p style={{ padding: '1rem' }}>Post not found.</p>;
 
   return (
     <BlogPostForm
