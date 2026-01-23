@@ -30,6 +30,8 @@ const App = () => {
     '2': [],
   });
 
+  const [searchQuery, setSearchQuery] = useState('');
+
   const handleCreatePost = (newPost) => {
     const id = (blogPosts.length + 1).toString();
     const summary = newPost.content.slice(0, 50) + '...';
@@ -49,21 +51,29 @@ const App = () => {
     }));
   };
 
+  const filteredPosts = blogPosts.filter((post) => {
+    const query = searchQuery.toLowerCase();
+    return (
+      post.title.toLowerCase().includes(query) ||
+      post.content.toLowerCase().includes(query)
+    );
+  });
+
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<BlogPostList posts={blogPosts} />} />
-        <Route path="Blog" element={<BlogPostList posts={blogPosts} />} />
+      <Route path="/" element={<Layout onSearch={setSearchQuery} />}>
+        <Route index element={<BlogPostList posts={filteredPosts} searchQuery={searchQuery} />} />
+        <Route path="Blog" element={<BlogPostList posts={filteredPosts} searchQuery={searchQuery} />} />
         <Route path="Blog/create" element={<BlogPostForm onAddPost={handleCreatePost} />} />
-        <Route 
-          path="Blog/:id" 
+        <Route
+          path="Blog/:id"
           element={
-            <BlogPostDetail 
-              posts={blogPosts} 
-              comments={comments} 
-              onAddComment={handleAddComment} 
+            <BlogPostDetail
+              posts={blogPosts}
+              comments={comments}
+              onAddComment={handleAddComment}
             />
-          } 
+          }
         />
       </Route>
     </Routes>

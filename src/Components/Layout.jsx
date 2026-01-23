@@ -1,20 +1,12 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import NavBar from './NavBar';
 import styles from './Layout.module.css';
 
-const Layout = () => {
+const Layout = ({ onSearch }) => {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.logo}>BlogApp</h1>
-        <nav>
-          <ul className={styles.navLinks}>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Blog</Link></li>
-            <li><Link to="/">About</Link></li>
-          </ul>
-        </nav>
-      </header>
+      <NavBar onSearch={onSearch} />
       <main className={styles.main}>
         <Outlet />
       </main>

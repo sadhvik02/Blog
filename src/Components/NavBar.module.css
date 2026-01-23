@@ -1,70 +1,65 @@
-.navBar {
-  background-color: #1779db;
-  color: rgb(11, 11, 11);
-  padding: 0 20px;
-  height: 60px;
+.header {
+  background-color: #003366;
+  /* Dark Blue from Design Spec screenshots */
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+.container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1rem;
+  /* Spacing between logo, search, and nav */
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
-  text-decoration: none;
   color: white;
+  margin: 0;
 }
 
-.links {
+.nav {
   display: flex;
-  gap: 20px;
+  gap: 1.5rem;
 }
 
-.links a {
+.nav a {
+  color: white;
   text-decoration: none;
-  color: white;
-  font-size: 18px;
+  font-size: 1rem;
 }
 
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: white;
-  cursor: pointer;
+.nav a:hover {
+  text-decoration: underline;
 }
 
-.mobileMenu {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  background-color: rgb(31, 6, 141);
+.searchContainer {
+  flex: 1;
+  /* Allow search to take flexible space but be centered/bounded */
   display: flex;
-  flex-direction: column;
-  transition: all 0.3s ease;
+  justify-content: flex-end;
+  /* Align right next to nav */
+  max-width: 400px;
+  /* Optional: limit width */
+  margin-right: 1rem;
 }
 
-.mobileMenu a {
-  padding: 20px;
-  font-size: 18px;
-  color: #003366;
-  text-decoration: none;
-  border-bottom: 1px solid #ccc;
-}
-
-/* Responsive Styles */
 @media (max-width: 768px) {
-  .links {
+  .nav {
     display: none;
+    /* For simplicity, hiding nav links on small mobile as per focus on Search task, or we could keep hamburger if it was fully implemented. 
+                     However, the design spec focuses on Search behavior (icon expand). */
   }
 
-  .hamburger {
-    display: block;
+  /* If we want to show hamburger, we'd need that logic back in NavBar.jsx, 
+     but for now let's ensure Search is accessible. */
+
+  .searchContainer {
+    margin-right: 0;
+    justify-content: flex-end;
   }
 }
