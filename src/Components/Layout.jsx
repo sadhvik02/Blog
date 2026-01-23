@@ -1,23 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import styles from './Layout.module.css';
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.container}>
       <header className={styles.header}>
-        <div className={styles.container}>
-          <h1 className={styles.logo}>BlogApp</h1>
-          <nav className={styles.nav}>
-            <Link to="/">Home</Link>
-            <Link to="/Blog">Blog</Link>
-            <Link to="/About">About</Link>
-          </nav>
-        </div>
+        <h1 className={styles.logo}>BlogApp</h1>
+        <nav>
+          <ul className={styles.navLinks}>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/">Blog</Link></li>
+            <li><Link to="/">About</Link></li>
+          </ul>
+        </nav>
       </header>
-
-      <main className={styles.main}>{children}</main>
-
+      <main className={styles.main}>
+        <Outlet />
+      </main>
       <footer className={styles.footer}>
         <p>© 2023 BlogApp. All rights reserved.</p>
       </footer>
